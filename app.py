@@ -1,5 +1,4 @@
 import streamlit as st
-from google import genai
 
 # Page settings
 st.set_page_config(
