@@ -122,32 +122,32 @@ PROJECT INFORMATION:
                     )
                 )
 
-                data = json.loads(response.text)
+                                data = json.loads(response.text)
 
-st.markdown("## Project Delivery Status")
+                st.markdown("## Project Delivery Status")
 
-col1, col2, col3, col4 = st.columns(4)
+                col1, col2, col3, col4 = st.columns(4)
 
-with col1:
-    st.metric(
-        "RAG Status",
-        data.get("rag_status", "Unknown")
-    )
+                with col1:
+                    st.metric(
+                        "RAG Status",
+                        data.get("rag_status", "Unknown")
+                    )
 
-with col2:
-    st.metric(
-        "Top Risks",
-        len(data.get("risks", []))
-    )
+                with col2:
+                    st.metric(
+                        "Top Risks",
+                        len(data.get("risks", []))
+                    )
 
-with col3:
-    st.metric(
-        "Issues",
-        len(data.get("issues", []))
-    )
+                with col3:
+                    st.metric(
+                        "Issues",
+                        len(data.get("issues", []))
+                    )
 
-with col4:
-    st.metric(
-        "Actions",
-        len(data.get("actions", []))
-    )
+                with col4:
+                    st.metric(
+                        "Actions",
+                        len(data.get("actions", []))
+                    )
