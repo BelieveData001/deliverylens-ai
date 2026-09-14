@@ -110,13 +110,7 @@ PROJECT INFORMATION:
 
 {project_update}
 """
-             with st.spinner("Analysing project..."):
-
-    try:
-
-        response = None
-
-        for attempt in range(3):
+        with st.spinner("Analysing project..."):
 
             try:
 
@@ -128,23 +122,10 @@ PROJECT INFORMATION:
                     )
                 )
 
-                break
+                st.markdown("## AI Delivery Analysis")
+                st.markdown(response.text)
 
-            except Exception as api_error:
+            except Exception as e:
 
-                if "503" in str(api_error) and attempt < 2:
-
-                    import time
-                    time.sleep(5)
-
-                else:
-
-                    raise api_error
-
-        st.markdown("## AI Delivery Analysis")
-        st.markdown(response.text)
-
-    except Exception as e:
-
-        st.error("The AI request could not be completed.")
-        st.write("Technical error:", str(e))
+                st.error("The AI request could not be completed.")
+                st.write("Technical error:", str(e))
