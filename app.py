@@ -110,18 +110,36 @@ PROJECT INFORMATION:
 
 {project_update}
 """
-        with st.spinner("Analysing project..."):
+              with st.spinner("Analysing project..."):
 
             try:
 
-                response = client.models.generate_content(
-                    model="gemini-3.6-flash",
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json"
-                    )
-                )
-                
+                response = None
+
+                for attempt in range(3):
+
+                    try:
+
+                        response = client.models.generate_content(
+                            model="gemini-3.6-flash",
+                            contents=prompt,
+                            config=types.GenerateContentConfig(
+                                response_mime_type="application/json"
+                            )
+                        )
+
+                        break
+
+                    except Exception as api_error:
+
+                        if "503" in str(api_error) and attempt < 2:
+
+                            import time
+                            time.sleep(5)
+
+                        else:
+
+                            raise api_error
 
                 st.markdown("## AI Delivery Analysis")
                 st.markdown(response.text)
