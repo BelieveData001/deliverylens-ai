@@ -46,89 +46,70 @@ if st.button("Analyse Project"):
         prompt = f"""
 You are an experienced Project Manager and Delivery Manager.
 
-Your job is to analyse project information and provide practical
-delivery-management insight.
-
-Analyse ONLY the information provided by the user.
+Analyse ONLY the project information provided by the user.
 
 Do not invent facts, dates, owners, budgets or project information.
 
-If something is unknown, write:
+If information is missing, use:
 "Information not provided."
 
-Provide your response using the following structure:
+Return ONLY valid JSON.
 
-# OVERALL PROJECT STATUS
+Use exactly this structure:
 
-RAG Status:
-Green / Amber / Red
+{{
+  "rag_status": "Green / Amber / Red",
+  "status_reason": "Short explanation for the RAG rating.",
 
-Status Reason:
-Give a short explanation for the RAG rating.
+  "executive_summary": "Concise summary suitable for a project sponsor or senior stakeholder.",
 
-# EXECUTIVE SUMMARY
+  "risks": [
+    {{
+      "risk": "Risk description",
+      "likelihood": "Low / Medium / High",
+      "impact": "Low / Medium / High",
+      "risk_rating": "Low / Medium / High",
+      "mitigation": "Recommended mitigation",
+      "owner": "Owner or Information not provided",
+      "escalation_required": "Yes / No"
+    }}
+  ],
 
-Provide a concise summary suitable for a project sponsor or senior stakeholder.
+  "issues": [
+    {{
+      "issue": "Current issue",
+      "impact": "Impact of the issue",
+      "recommended_action": "Recommended action",
+      "owner": "Owner or Information not provided",
+      "escalation_required": "Yes / No"
+    }}
+  ],
 
-# TOP RISKS
+  "actions": [
+    {{
+      "action": "Action required",
+      "owner": "Owner or Information not provided",
+      "due_date": "Due date or Information not provided",
+      "priority": "High / Medium / Low"
+    }}
+  ],
 
-For each significant risk provide:
+  "escalations": [
+    {{
+      "decision_or_escalation": "Decision or escalation required",
+      "why_required": "Why stakeholder or sponsor attention is required",
+      "who_should_decide": "Decision maker or Information not provided",
+      "urgency": "High / Medium / Low"
+    }}
+  ],
 
-Risk:
-Likelihood:
-Impact:
-Risk Rating:
-Recommended Mitigation:
-Owner:
-Escalation Required: Yes / No
-
-# KEY ISSUES
-
-For each current issue provide:
-
-Issue:
-Impact:
-Recommended Action:
-Owner:
-Escalation Required: Yes / No
-
-# ACTIONS
-
-List the most important actions.
-
-For each action provide:
-
-Action:
-Owner:
-Due Date:
-Priority:
-
-If the owner or due date is not provided, write:
-"Information not provided."
-
-# ESCALATIONS / DECISIONS REQUIRED
-
-Identify decisions or escalations that require stakeholder or sponsor attention.
-
-For each one provide:
-
-Decision / Escalation:
-Why it is required:
-Who should decide:
-Urgency:
-
-# STAKEHOLDER UPDATE
-
-Write a concise professional project update that a Project Manager
-could send to stakeholders.
-
-Keep the language clear, professional and concise.
+  "stakeholder_update": "Concise professional project update suitable for sending to stakeholders."
+}}
 
 PROJECT INFORMATION:
 
 {project_update}
 """
-
         with st.spinner("Analysing project..."):
 
             try:
