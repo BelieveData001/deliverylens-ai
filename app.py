@@ -151,7 +151,14 @@ PROJECT INFORMATION:
                         "Actions",
                         len(data.get("actions", []))
                     )
+                st.markdown("## Executive Summary")
 
+                st.write(
+                    data.get(
+                        "executive_summary",
+                        "Information not provided."
+                    )
+                )
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
