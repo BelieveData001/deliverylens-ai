@@ -1,4 +1,5 @@
 import streamlit as st
+from google import genai
 
 # Page settings
 st.set_page_config(
@@ -7,7 +8,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# Title
+# Connect to Gemini
+client = genai.Client(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
+
+# Page title
 st.title("DeliveryLens AI")
 st.subheader("AI-powered Project Delivery Assistant")
 
@@ -20,7 +26,11 @@ st.write(
 project_update = st.text_area(
     "Paste your project update below:",
     height=300,
-    placeholder="Example: UAT is two weeks behind schedule..."
+    placeholder=(
+        "Example: UAT is two weeks behind schedule. "
+        "Two testers are unavailable. "
+        "The planned go-live date is 30 September."
+    )
 )
 
 # Analyse button
@@ -30,4 +40,41 @@ if st.button("Analyse Project"):
         st.warning("Please enter some project information first.")
 
     else:
-        st.info("AI analysis will appear here.")
+
+        prompt = f"""
+You are an experienced Project Manager and Delivery Manager.
+
+Analyse the project information below.
+
+Provide the following:
+
+1. Overall RAG status: Green, Amber or Red
+2. Executive summary
+3. Top 5 risks
+4. Key issues requiring attention
+5. Actions and owners
+6. Items requiring escalation
+7. Draft stakeholder update
+
+IMPORTANT:
+- Only use information provided by the user.
+- Do not invent facts.
+- If information is missing, say "Information not provided."
+- Clearly distinguish between risks and issues.
+- Keep the response concise and practical.
+
+PROJECT INFORMATION:
+
+{project_update}
+"""
+
+        with st.spinner("Analysing project..."):
+
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
+
+        st.markdown("## AI Delivery Analysis")
+
+        st.markdown(response.text)
