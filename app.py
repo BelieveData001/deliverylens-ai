@@ -68,17 +68,19 @@ PROJECT INFORMATION:
 {project_update}
 """
 
-       with st.spinner("Analysing project..."):
+        with st.spinner("Analysing project..."):
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
+            try:
 
-        st.markdown("## AI Delivery Analysis")
-        st.markdown(response.text)
+                response = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=prompt
+                )
 
-    except Exception as e:
-        st.error("The AI request could not be completed.")
-        st.write("Technical error:", str(e))
+                st.markdown("## AI Delivery Analysis")
+                st.markdown(response.text)
+
+            except Exception as e:
+
+                st.error("The AI request could not be completed.")
+                st.write("Technical error:", str(e))
