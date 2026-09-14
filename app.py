@@ -122,7 +122,7 @@ PROJECT INFORMATION:
                     )
                 )
 
-                                data = json.loads(response.text)
+                data = json.loads(response.text)
 
                 st.markdown("## Project Delivery Status")
 
@@ -151,3 +151,8 @@ PROJECT INFORMATION:
                         "Actions",
                         len(data.get("actions", []))
                     )
+
+            except Exception as e:
+
+                st.error("The AI response could not be processed.")
+                st.write("Technical error:", str(e))
