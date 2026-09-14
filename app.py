@@ -114,13 +114,14 @@ PROJECT INFORMATION:
 
             try:
 
-response = client.models.generate_content(
-    model="gemini-3.6-flash",
-    contents=prompt,
-    config=types.GenerateContentConfig(
-        response_mime_type="application/json"
-    )
-)
+                response = client.models.generate_content(
+                    model="gemini-3.6-flash",
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json"
+                    )
+                )
+                
 
                 st.markdown("## AI Delivery Analysis")
                 st.markdown(response.text)
