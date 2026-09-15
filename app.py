@@ -177,33 +177,52 @@ PROJECT INFORMATION:
                         "Information not provided."
                     )
                 )
-                st.markdown("## Top Risks")
+                                st.markdown("## Top Risks")
 
                 for risk in data.get("risks", []):
 
-                    st.markdown(
-                        f"**Risk:** {risk.get('risk', 'Information not provided.')}"
-                    )
+                    with st.container(border=True):
 
-                    st.write(
-                        f"**Likelihood:** {risk.get('likelihood', 'Information not provided.')}  |  "
-                        f"**Impact:** {risk.get('impact', 'Information not provided.')}  |  "
-                        f"**Rating:** {risk.get('risk_rating', 'Information not provided.')}"
-                    )
+                        st.markdown(
+                            f"### {risk.get('risk', 'Information not provided.')}"
+                        )
 
-                    st.write(
-                        f"**Mitigation:** {risk.get('mitigation', 'Information not provided.')}"
-                    )
+                        col1, col2, col3 = st.columns(3)
 
-                    st.write(
-                        f"**Owner:** {risk.get('owner', 'Information not provided.')}  |  "
-                        f"**Escalation:** {risk.get('escalation_required', 'Information not provided.')}"
-                    )
+                        with col1:
+                            st.write(
+                                f"**Likelihood:** "
+                                f"{risk.get('likelihood', 'Information not provided.')}"
+                            )
 
-                    st.divider()
-                    st.markdown("## Key Issues")
+                        with col2:
+                            st.write(
+                                f"**Impact:** "
+                                f"{risk.get('impact', 'Information not provided.')}"
+                            )
 
-                for issue in data.get("issues", []):
+                        with col3:
+                            st.write(
+                                f"**Risk Rating:** "
+                                f"{risk.get('risk_rating', 'Information not provided.')}"
+                            )
+
+                        st.write(
+                            f"**Mitigation:** "
+                            f"{risk.get('mitigation', 'Information not provided.')}"
+                        )
+
+                        st.write(
+                            f"**Owner:** "
+                            f"{risk.get('owner', 'Information not provided.')}"
+                        )
+
+                        st.write(
+                            f"**Escalation Required:** "
+                            f"{risk.get('escalation_required', 'Information not provided.')}"
+                        )    st.markdown("## Key Issues")
+
+                    for issue in data.get("issues", []):
 
                     st.markdown(
                         f"**Issue:** {issue.get('issue', 'Information not provided.')}"
