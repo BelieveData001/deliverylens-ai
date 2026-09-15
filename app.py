@@ -205,6 +205,21 @@ PROJECT INFORMATION:
                     )
 
                     st.divider()
+                    st.markdown("## Actions & Owners")
+
+                for action in data.get("actions", []):
+
+                    st.markdown(
+                        f"**Action:** {action.get('action', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Owner:** {action.get('owner', 'Information not provided.')}  |  "
+                        f"**Priority:** {action.get('priority', 'Information not provided.')}  |  "
+                        f"**Due Date:** {action.get('due_date', 'Information not provided.')}"
+                    )
+
+                    st.divider()
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
