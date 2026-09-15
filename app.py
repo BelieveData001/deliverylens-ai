@@ -159,6 +159,30 @@ PROJECT INFORMATION:
                         "Information not provided."
                     )
                 )
+                st.markdown("## Top Risks")
+
+                for risk in data.get("risks", []):
+
+                    st.markdown(
+                        f"**Risk:** {risk.get('risk', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Likelihood:** {risk.get('likelihood', 'Information not provided.')}  |  "
+                        f"**Impact:** {risk.get('impact', 'Information not provided.')}  |  "
+                        f"**Rating:** {risk.get('risk_rating', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Mitigation:** {risk.get('mitigation', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Owner:** {risk.get('owner', 'Information not provided.')}  |  "
+                        f"**Escalation:** {risk.get('escalation_required', 'Information not provided.')}"
+                    )
+
+                    st.divider()
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
