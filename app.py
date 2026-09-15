@@ -223,7 +223,7 @@ PROJECT INFORMATION:
                         )
                     st.markdown("## Key Issues")
 
-                    for issue in data.get("issues", []):
+                for issue in data.get("issues", []):
 
                     st.markdown(
                         f"**Issue:** {issue.get('issue', 'Information not provided.')}"
