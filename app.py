@@ -177,7 +177,7 @@ PROJECT INFORMATION:
                         "Information not provided."
                     )
                 )
-                                st.markdown("## Top Risks")
+                st.markdown("## Top Risks")
 
                 for risk in data.get("risks", []):
 
