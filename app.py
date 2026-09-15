@@ -220,6 +220,28 @@ PROJECT INFORMATION:
                     )
 
                     st.divider()
+                    st.markdown("## Escalations / Decisions")
+
+                for escalation in data.get("escalations", []):
+
+                    st.markdown(
+                        f"**Decision / Escalation:** "
+                        f"{escalation.get('decision_or_escalation', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Why Required:** "
+                        f"{escalation.get('why_required', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Decision Maker:** "
+                        f"{escalation.get('who_should_decide', 'Information not provided.')}  |  "
+                        f"**Urgency:** "
+                        f"{escalation.get('urgency', 'Information not provided.')}"
+                    )
+
+                    st.divider()
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
