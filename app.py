@@ -129,10 +129,28 @@ PROJECT INFORMATION:
                 col1, col2, col3, col4 = st.columns(4)
 
                 with col1:
+
+                    rag_status = data.get(
+                        "rag_status",
+                        "Unknown"
+                    )
+
                     st.metric(
                         "RAG Status",
-                        data.get("rag_status", "Unknown")
+                        rag_status
                     )
+
+                    if rag_status == "Green":
+                        st.success("Project is on track.")
+
+                    elif rag_status == "Amber":
+                        st.warning("Project requires attention.")
+
+                    elif rag_status == "Red":
+                        st.error("Project requires immediate attention.")
+
+                    else:
+                        st.info("RAG status not provided.")
 
                 with col2:
                     st.metric(
