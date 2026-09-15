@@ -220,7 +220,7 @@ PROJECT INFORMATION:
                         st.write(
                             f"**Escalation Required:** "
                             f"{risk.get('escalation_required', 'Information not provided.')}"
-                        )    st.markdown("## Key Issues")
+                        )st.markdown("## Key Issues")
 
                     for issue in data.get("issues", []):
 
