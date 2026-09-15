@@ -183,7 +183,7 @@ PROJECT INFORMATION:
                     )
 
                     st.divider()
-                                    st.markdown("## Key Issues")
+                    st.markdown("## Key Issues")
 
                 for issue in data.get("issues", []):
 
