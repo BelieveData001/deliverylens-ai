@@ -183,6 +183,28 @@ PROJECT INFORMATION:
                     )
 
                     st.divider()
+                                    st.markdown("## Key Issues")
+
+                for issue in data.get("issues", []):
+
+                    st.markdown(
+                        f"**Issue:** {issue.get('issue', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Impact:** {issue.get('impact', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Recommended Action:** {issue.get('recommended_action', 'Information not provided.')}"
+                    )
+
+                    st.write(
+                        f"**Owner:** {issue.get('owner', 'Information not provided.')}  |  "
+                        f"**Escalation:** {issue.get('escalation_required', 'Information not provided.')}"
+                    )
+
+                    st.divider()
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
