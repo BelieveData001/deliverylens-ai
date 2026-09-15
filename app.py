@@ -242,6 +242,14 @@ PROJECT INFORMATION:
                     )
 
                     st.divider()
+                    st.markdown("## Stakeholder Update")
+
+                st.write(
+                    data.get(
+                        "stakeholder_update",
+                        "Information not provided."
+                    )
+                )
             except Exception as e:
 
                 st.error("The AI response could not be processed.")
