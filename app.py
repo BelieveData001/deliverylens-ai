@@ -287,24 +287,30 @@ PROJECT INFORMATION:
 
                 for escalation in data.get("escalations", []):
 
-                    st.markdown(
-                        f"**Decision / Escalation:** "
-                        f"{escalation.get('decision_or_escalation', 'Information not provided.')}"
-                    )
+                    with st.container(border=True):
 
-                    st.write(
-                        f"**Why Required:** "
-                        f"{escalation.get('why_required', 'Information not provided.')}"
-                    )
+                        st.markdown(
+                            f"### {escalation.get('decision_or_escalation', 'Information not provided.')}"
+                        )
 
-                    st.write(
-                        f"**Decision Maker:** "
-                        f"{escalation.get('who_should_decide', 'Information not provided.')}  |  "
-                        f"**Urgency:** "
-                        f"{escalation.get('urgency', 'Information not provided.')}"
-                    )
+                        st.write(
+                            f"**Why Required:** "
+                            f"{escalation.get('why_required', 'Information not provided.')}"
+                        )
 
-                    st.divider()
+                        col1, col2 = st.columns(2)
+
+                        with col1:
+                            st.write(
+                                f"**Decision Maker:** "
+                                f"{escalation.get('who_should_decide', 'Information not provided.')}"
+                            )
+
+                        with col2:
+                            st.write(
+                                f"**Urgency:** "
+                                f"{escalation.get('urgency', 'Information not provided.')}"
+                            )
                     st.markdown("## Stakeholder Update")
 
                 st.write(
