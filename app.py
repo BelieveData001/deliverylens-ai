@@ -254,22 +254,35 @@ PROJECT INFORMATION:
                                 f"**Escalation Required:** "
                                 f"{issue.get('escalation_required', 'Information not provided.')}"
                             )
-                    st.markdown("## Actions & Owners")
+                            st.markdown("## Actions & Owners")
 
                 for action in data.get("actions", []):
 
-                    st.markdown(
-                        f"**Action:** {action.get('action', 'Information not provided.')}"
-                    )
+                    with st.container(border=True):
 
-                    st.write(
-                        f"**Owner:** {action.get('owner', 'Information not provided.')}  |  "
-                        f"**Priority:** {action.get('priority', 'Information not provided.')}  |  "
-                        f"**Due Date:** {action.get('due_date', 'Information not provided.')}"
-                    )
+                        st.markdown(
+                            f"### {action.get('action', 'Information not provided.')}"
+                        )
 
-                    st.divider()
-                    st.markdown("## Escalations / Decisions")
+                        col1, col2, col3 = st.columns(3)
+
+                        with col1:
+                            st.write(
+                                f"**Owner:** "
+                                f"{action.get('owner', 'Information not provided.')}"
+                            )
+
+                        with col2:
+                            st.write(
+                                f"**Priority:** "
+                                f"{action.get('priority', 'Information not provided.')}"
+                            )
+
+                        with col3:
+                            st.write(
+                                f"**Due Date:** "
+                                f"{action.get('due_date', 'Information not provided.')}"
+                            )st.markdown("## Escalations / Decisions")
 
                 for escalation in data.get("escalations", []):
 
