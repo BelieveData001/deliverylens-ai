@@ -221,28 +221,39 @@ PROJECT INFORMATION:
                             f"**Escalation Required:** "
                             f"{risk.get('escalation_required', 'Information not provided.')}"
                         )
-                    st.markdown("## Key Issues")
+                        st.markdown("## Key Issues")
 
                 for issue in data.get("issues", []):
 
-                    st.markdown(
-                        f"**Issue:** {issue.get('issue', 'Information not provided.')}"
-                    )
+                    with st.container(border=True):
 
-                    st.write(
-                        f"**Impact:** {issue.get('impact', 'Information not provided.')}"
-                    )
+                        st.markdown(
+                            f"### {issue.get('issue', 'Information not provided.')}"
+                        )
 
-                    st.write(
-                        f"**Recommended Action:** {issue.get('recommended_action', 'Information not provided.')}"
-                    )
+                        st.write(
+                            f"**Impact:** "
+                            f"{issue.get('impact', 'Information not provided.')}"
+                        )
 
-                    st.write(
-                        f"**Owner:** {issue.get('owner', 'Information not provided.')}  |  "
-                        f"**Escalation:** {issue.get('escalation_required', 'Information not provided.')}"
-                    )
+                        st.write(
+                            f"**Recommended Action:** "
+                            f"{issue.get('recommended_action', 'Information not provided.')}"
+                        )
 
-                    st.divider()
+                        col1, col2 = st.columns(2)
+
+                        with col1:
+                            st.write(
+                                f"**Owner:** "
+                                f"{issue.get('owner', 'Information not provided.')}"
+                            )
+
+                        with col2:
+                            st.write(
+                                f"**Escalation Required:** "
+                                f"{issue.get('escalation_required', 'Information not provided.')}"
+                            )
                     st.markdown("## Actions & Owners")
 
                 for action in data.get("actions", []):
