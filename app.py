@@ -282,7 +282,8 @@ PROJECT INFORMATION:
                             st.write(
                                 f"**Due Date:** "
                                 f"{action.get('due_date', 'Information not provided.')}"
-                            )st.markdown("## Escalations / Decisions")
+                            )
+                            st.markdown("## Escalations / Decisions")
 
                 for escalation in data.get("escalations", []):
 
