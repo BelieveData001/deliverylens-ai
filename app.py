@@ -311,7 +311,16 @@ PROJECT INFORMATION:
                                 f"**Urgency:** "
                                 f"{escalation.get('urgency', 'Information not provided.')}"
                             )
-                    st.markdown("## Stakeholder Update")
+                            st.markdown("## Stakeholder Update")
+
+                with st.container(border=True):
+
+                    st.write(
+                        data.get(
+                            "stakeholder_update",
+                            "Information not provided."
+                        )
+                    )
 
                 st.write(
                     data.get(
